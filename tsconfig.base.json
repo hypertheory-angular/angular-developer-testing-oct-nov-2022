@@ -18,7 +18,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@adt/learning": ["libs/learning/src/index.ts"]
+      "@adt/learning": ["libs/learning/src/index.ts"],
+      "@adt/shared": ["libs/shared/src/index.ts"]
     }
   },
   "exclude": [
