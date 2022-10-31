@@ -29,9 +29,9 @@ describe('Giving Raises', () => {
       name: 'Ed Smith',
     };
 
-    giveRaise(ed, 100);
+    const updatedEd = giveRaise(ed, 100);
 
-    expect(ed.salary).toBe(100_100);
+    expect(updatedEd?.salary).toBe(100_100);
   });
 
   it('giving a retiree a raise', () => {
@@ -40,8 +40,8 @@ describe('Giving Raises', () => {
       pension: 80_000,
     };
 
-    giveRaise(jill, 100);
+    const updatedJill = giveRaise(jill, 100);
 
-    expect(jill.pension).toBe(80_100);
+    expect(updatedJill?.pension).toBe(80_100);
   });
 });
