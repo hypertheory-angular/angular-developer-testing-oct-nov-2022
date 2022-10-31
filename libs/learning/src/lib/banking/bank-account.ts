@@ -1,3 +1,4 @@
+import { v4 } from 'uuid';
 export class BankAccount {
   private _balance = 5000;
   private _log: Transaction[] = [];
@@ -21,6 +22,7 @@ export class BankAccount {
 
   private addToLog(amount: number, type: TransactionTypes) {
     const tx: Transaction = {
+      id: 'TX' + v4(),
       date: new Date().toISOString(),
       type,
       amount,
@@ -32,6 +34,7 @@ export class BankAccount {
 }
 
 type Transaction = {
+  id: string;
   date: string;
   amount: number;
   type: TransactionTypes;
