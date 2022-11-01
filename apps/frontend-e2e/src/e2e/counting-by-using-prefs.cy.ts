@@ -18,4 +18,5 @@ describe('Counting by in Counter Uses Preferences', () => {
 
     counter.getCurrent().should('contain.text', '3');
   });
+  // More tests as needed - do it!
 });

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectCurrentCount } from '../state';
+import { CounterEvents } from '../state/actions/counter.actions';
 
 @Component({
   selector: 'adt-golf-counter',
@@ -6,12 +9,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./golf-counter.component.css'],
 })
 export class GolfCounterComponent {
-  current = 0;
+  current$ = this.store.select(selectCurrentCount);
+
+  constructor(private store: Store) {}
   increment() {
-    this.current += 1;
+    this.store.dispatch(CounterEvents.increment());
   }
 
   decrement() {
-    this.current -= 1;
+    this.store.dispatch(CounterEvents.decrement());
   }
 }
