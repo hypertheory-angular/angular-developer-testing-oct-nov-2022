@@ -1,15 +1,16 @@
 <div data-testid="counter-component">
   <button
-    disabled
+    [disabled]="current === 0"
     data-testid="decrement-button"
     class="btn btn-primary"
   >
     -
   </button>
-  <span data-testid="current">0</span>
+  <span data-testid="current">{{ current }}</span>
   <button
     data-testid="increment-button"
     class="btn btn-primary"
+    (click)="increment()"
   >
     +
   </button>

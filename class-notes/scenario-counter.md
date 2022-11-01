@@ -10,3 +10,16 @@ Given the user acesses the golf counter feature
 Then the current count should 0
 And the increment button should enabled
 and the decrement button should be disabled
+
+## Example - Incrementing
+
+Given the user accesses the golf counter feature
+When they click the increment button
+Then the current count increments
+and the decrement button is enabled
+
+## Example - Decrementing
+
+Decrement reduces the current count.
+
+When you get back to zero, decrement should be disabled.
