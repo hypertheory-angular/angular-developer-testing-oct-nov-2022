@@ -10,4 +10,8 @@ export class GolfCounterComponent {
   increment() {
     this.current += 1;
   }
+
+  decrement() {
+    this.current -= 1;
+  }
 }

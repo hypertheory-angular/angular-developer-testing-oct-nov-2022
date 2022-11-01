@@ -23,3 +23,11 @@ and the decrement button is enabled
 Decrement reduces the current count.
 
 When you get back to zero, decrement should be disabled.
+
+# Scenario
+
+We want to have give the ability for users to set preferences.
+
+They want to be able to say that they like to count by 1, 3 or 5.
+
+That should impact the way the counter component increments and decrements.
