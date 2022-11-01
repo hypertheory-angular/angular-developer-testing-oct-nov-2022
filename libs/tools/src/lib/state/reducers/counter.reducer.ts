@@ -15,5 +15,14 @@ export const reducer = createReducer(
   initialState,
   on(CounterPrefsEvents.byset, (s, a) => ({ ...s, by: a.by })),
   on(CounterEvents.increment, (s) => ({ ...s, current: s.current + s.by })),
-  on(CounterEvents.decrement, (s) => ({ ...s, current: s.current - s.by })),
+  on(CounterEvents.decrement, decrement),
 );
+
+function decrement(s: CounterState): CounterState {
+  const newValue = s.current - s.by;
+  if (newValue >= 0) {
+    return { ...s, current: newValue };
+  } else {
+    return { ...s, current: 0 };
+  }
+}
