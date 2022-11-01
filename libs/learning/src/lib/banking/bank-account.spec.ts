@@ -1,4 +1,5 @@
 import { BankAccount } from './bank-account';
+import * as uuid from 'uuid';
 describe('The Bank Account', () => {
   describe('New Accounts', () => {
     it('has the correct opening balance', () => {
@@ -46,23 +47,29 @@ describe('The Bank Account', () => {
 });
 describe('Getting the Last Transaction', () => {
   it('records your last transaction', () => {
+    // Given
     const NOW = '1969-04-20T23:59:00.000Z';
     const mockedNow = new Date(NOW);
     jest
       .spyOn(global, 'Date')
       .mockImplementation(() => mockedNow as unknown as string);
 
+    jest.spyOn(uuid, 'v4').mockReturnValue('867-5309');
+
     const account = new BankAccount();
     const amountToDeposit = 119.42;
 
+    // When
     account.deposit(amountToDeposit);
 
     const lastTransaction = account.getLastTransaction();
 
+    // Then
     expect(lastTransaction).toEqual({
       date: NOW,
       amount: amountToDeposit,
       type: 'Deposit',
+      id: 'TX867-5309',
     });
   });
 });
