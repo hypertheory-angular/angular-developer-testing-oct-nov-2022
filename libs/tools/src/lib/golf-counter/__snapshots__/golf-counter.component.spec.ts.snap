@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GolfCounterComponent Initial State 1`] = `
+<div
+  data-testid="counter-component"
+>
+  <button
+    class="btn btn-primary"
+    data-testid="decrement-button"
+  >
+     Decrease
+  </button>
+  <span
+    data-testid="current"
+  >
+    444
+  </span>
+  <button
+    class="btn btn-primary"
+    data-testid="increment-button"
+  >
+     + 
+  </button>
+</div>
+`;
