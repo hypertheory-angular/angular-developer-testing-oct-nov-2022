@@ -3,6 +3,7 @@ import { GolfCounterComponent } from './golf-counter.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import * as fromGolfCounterReducer from '../state/reducers/counter.reducer';
 import * as rootState from '../state';
+import { CounterEvents } from '../state/actions/counter.actions';
 describe('GolfCounterComponent', () => {
   let spectator: Spectator<GolfCounterComponent>;
   let store: MockStore;
@@ -34,15 +35,18 @@ describe('GolfCounterComponent', () => {
   });
 
   it('Initial State', () => {
-    // spectator.detectChanges();
-    // const component = spectator.query<HTMLSpanElement>(
-    //   '[data-testid="current"]',
-    // );
-    // expect(component).toBeDefined();
-
-    // console.log(component);
-    // expect(component?.innerText).toBe('99');
     const component = spectator.query('[data-testid="counter-component"]');
     expect(component).toMatchSnapshot();
+  });
+
+  it('can increment', () => {
+    const incrementButton = spectator.query('[data-testid="increment-button"]');
+    if (!incrementButton) {
+      fail('No Increment button found');
+    } else {
+      jest.spyOn(store, 'dispatch');
+      spectator.click(incrementButton);
+      expect(store.dispatch).toHaveBeenCalledWith(CounterEvents.increment());
+    }
   });
 });
