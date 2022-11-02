@@ -49,4 +49,8 @@ describe('GolfCounterComponent', () => {
       expect(store.dispatch).toHaveBeenCalledWith(CounterEvents.increment());
     }
   });
+  it('demo of just a snapshot of a span', () => {
+    const component = spectator.query('[data-testid="current"]');
+    expect(component).toMatchSnapshot();
+  });
 });

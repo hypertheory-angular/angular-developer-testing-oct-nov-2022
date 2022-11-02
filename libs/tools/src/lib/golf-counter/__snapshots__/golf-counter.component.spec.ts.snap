@@ -23,3 +23,11 @@ exports[`GolfCounterComponent Initial State 1`] = `
   </button>
 </div>
 `;
+
+exports[`GolfCounterComponent demo of just a snapshot of a span 1`] = `
+<span
+  data-testid="current"
+>
+  444
+</span>
+`;
