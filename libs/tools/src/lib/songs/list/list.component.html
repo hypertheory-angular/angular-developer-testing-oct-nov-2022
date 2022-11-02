@@ -1,5 +1,9 @@
 <div
-  *ngIf="(songs$ | async)?.length === 0 && (loaded$ | async) === true"
+  *ngIf="
+    (songs$ | async)?.length === 0 &&
+    (loaded$ | async) === true &&
+    (errored$ | async) === false
+  "
   class="alert alert-info"
   data-testid="empty-songs"
 >
@@ -7,9 +11,22 @@
 </div>
 
 <div
+  class="alert alert-danger"
+  *ngIf="(errored$ | async) === true"
+>
+  <h2>Bummer! The API is Busted!</h2>
+  <div>
+    <p>
+      Wait a few seconds and try again?
+      <button (click)="retry()">Try Again</button>
+    </p>
+  </div>
+</div>
+
+<div
   data-testid="loading"
   class="alert alert-info"
-  *ngIf="(loaded$ | async) === false"
+  *ngIf="(loaded$ | async) === false && (errored$ | async) === false"
 >
   <h2>Your songs are loading. Be patient. Geeze!</h2>
 </div>

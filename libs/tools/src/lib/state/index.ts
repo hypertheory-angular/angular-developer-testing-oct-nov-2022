@@ -45,3 +45,8 @@ export const selectCountingBy = createSelector(
   selectCounterBranch,
   (b) => b.by,
 );
+
+export const selectSongListErrored = createSelector(
+  selectSongsBranch,
+  (b) => b.errored,
+);

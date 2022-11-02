@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectSongListLoaded, selectSongsList } from '../../state';
+import {
+  selectSongListErrored,
+  selectSongListLoaded,
+  selectSongsList,
+} from '../../state';
+import { SongsCommands } from '../../state/actions/song.actions';
 
 @Component({
   selector: 'adt-list',
@@ -10,5 +15,10 @@ import { selectSongListLoaded, selectSongsList } from '../../state';
 export class ListComponent {
   songs$ = this.store.select(selectSongsList);
   loaded$ = this.store.select(selectSongListLoaded);
+  errored$ = this.store.select(selectSongListErrored);
   constructor(private store: Store) {}
+
+  retry() {
+    this.store.dispatch(SongsCommands.load());
+  }
 }

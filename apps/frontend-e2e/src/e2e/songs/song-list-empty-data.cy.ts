@@ -5,7 +5,7 @@ describe('The song list when there is no data returned from the API', () => {
         body: {
           data: [],
         },
-        delay: 2000,
+        delay: 0,
       });
       cy.visit('/tools/songs');
     });
@@ -21,7 +21,7 @@ describe('The song list when there is no data returned from the API', () => {
         body: {
           data: [{ id: '1', title: 'Blah', artist: 'Blah' }],
         },
-        delay: 3000,
+        delay: 0,
       });
       cy.visit('/tools/songs');
     });
@@ -36,14 +36,15 @@ describe('The song list when there is no data returned from the API', () => {
         body: {
           data: [{ id: '1', title: 'Blah', artist: 'Blah' }],
         },
-        delay: 1,
+        delay: 0,
       }).as('songsData');
       cy.visit('/tools/songs');
     });
 
     it('should not show a message', () => {
+      // do this before the data is returned
       cy.get('[data-testid="loading"]').should('exist');
-
+      // do this after the data is returned.
       cy.wait('@songsData').get('[data-testid="loading"]').should('not.exist');
     });
   });

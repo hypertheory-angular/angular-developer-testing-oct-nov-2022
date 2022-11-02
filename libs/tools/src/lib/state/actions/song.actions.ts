@@ -3,7 +3,9 @@ import { SongEntity } from '../reducers/songs.reducer';
 
 export const SongsEvents = createActionGroup({
   source: 'List Songs Events',
-  events: {},
+  events: {
+    error: props<{ message: string }>(),
+  },
 });
 
 export const SongsCommands = createActionGroup({

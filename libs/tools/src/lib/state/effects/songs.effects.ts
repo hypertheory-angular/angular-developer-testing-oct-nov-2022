@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs';
-import { SongsCommands, SongsDocuments } from '../actions/song.actions';
+import { catchError, map, of, switchMap } from 'rxjs';
+import {
+  SongsCommands,
+  SongsDocuments,
+  SongsEvents,
+} from '../actions/song.actions';
 import { SongEntity } from '../reducers/songs.reducer';
 
 @Injectable()
@@ -20,6 +24,7 @@ export class SongEffects {
           .pipe(
             map((r) => r.data),
             map((payload) => SongsDocuments.songs({ payload })),
+            catchError((err) => of(SongsEvents.error({ message: 'Blammo!' }))),
           ),
       ),
     );
