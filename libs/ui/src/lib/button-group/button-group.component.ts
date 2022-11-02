@@ -11,6 +11,7 @@ export class ButtonGroupComponent {
 
   clicked(item: ButtonGroupItem) {
     this.selected.emit(item);
+    // write the code here that toggles the selected property.
   }
 }
 

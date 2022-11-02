@@ -5,6 +5,7 @@
     aria-label="Basic example"
   >
     <button
+      [disabled]="button.selected"
       (click)="clicked(button)"
       *ngFor="let button of buttons"
       type="button"

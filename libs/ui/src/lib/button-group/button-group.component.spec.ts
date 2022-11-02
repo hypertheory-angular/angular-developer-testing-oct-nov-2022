@@ -1,8 +1,5 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
-import {
-  ButtonGroupComponent,
-  ButtonGroupItem,
-} from './button-group.component';
+import { ButtonGroupComponent } from './button-group.component';
 describe('ButtonGroupComponent', () => {
   let spectator: Spectator<ButtonGroupComponent>;
   const createComponent = createComponentFactory(ButtonGroupComponent);
@@ -49,3 +46,9 @@ describe('ButtonGroupComponent', () => {
     });
   });
 });
+
+/* Practice:
+write tests to verify if an buttongroup item has it's selecte property set to true, it is disalbed.
+
+write a test that says when you click one, it becomes the selected item, and the one that WAS selected is no longer selected.
+*/
