@@ -1,4 +1,5 @@
-describe('The Song List', () => {
+import po from './song-list.selectors';
+describe('The Song List With Some Data', () => {
   beforeEach(() => {
     cy.intercept('GET', 'http://localhost:9999/songs', {
       body: {
@@ -23,6 +24,31 @@ describe('The Song List', () => {
       expect(loc.href).to.eq('http://localhost:4200/tools/songs');
       expect(loc.port).to.eq('4200');
       expect(loc.protocol).to.eq('http:');
+    });
+
+    const regex = /\/tools\/songs/i;
+    cy.url().should('match', regex);
+  });
+  describe('the variations', () => {
+    it('should have two songs listed', () => {
+      po.getSongListItems().should('have.length', 2);
+    });
+    it('should display a song with an album correctly', () => {
+      po.getSongListItem('0')
+        .find('[data-testid="header"]')
+        .should('have.text', ' Dreams ');
+
+      po.getSongListItem('0')
+        .find('[data-testid="summary"]')
+        .should('contains.text', 'Dreams is by Fleetwood Mac');
+
+      po.getSongListItem('0')
+        .find('[data-testid="footer"]')
+        .should('not.exist');
+    });
+
+    it('should display a song without an album correctly', () => {
+      po.getSongListItem('1').find('[data-testid="footer"]').should('exist');
     });
   });
 });

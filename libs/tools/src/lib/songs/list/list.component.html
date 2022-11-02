@@ -1,18 +1,46 @@
+<div
+  *ngIf="(songs$ | async)?.length === 0 && (loaded$ | async) === true"
+  class="alert alert-info"
+  data-testid="empty-songs"
+>
+  <h2>You have no songs! Add some!</h2>
+</div>
+
+<div
+  data-testid="loading"
+  class="alert alert-info"
+  *ngIf="(loaded$ | async) === false"
+>
+  <h2>Your songs are loading. Be patient. Geeze!</h2>
+</div>
+
 <ul
   *ngIf="songs$ | async as songs"
   class="list-unstyled"
   data-testid="song-list-component"
 >
   <li
+    [attr.data-testid]="'song-item-' + i.toString()"
     class="card"
-    *ngFor="let song of songs"
+    *ngFor="let song of songs; index as i"
   >
-    <div class="card-header">{{ song.title }}</div>
+    <div
+      data-testid="header"
+      class="card-header"
+    >
+      {{ song.title }}
+    </div>
     <div class="card-body">
-      <p>{{ song.title }} is by {{ song.artist }}</p>
-      <p *ngIf="song.album">This is on the Album {{ song.album }}</p>
+      <p data-testid="summary">{{ song.title }} is by {{ song.artist }}</p>
+      <p
+        data-testid="album-info"
+        *ngIf="song.album"
+      >
+        This is on the Album {{ song.album }}
+      </p>
     </div>
     <div
+      data-testid="footer"
       class="card-footer"
       *ngIf="!song.album"
     >

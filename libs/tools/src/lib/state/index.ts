@@ -31,6 +31,11 @@ const { selectAll: selectAllSongsArray } =
 
 export const selectSongsList = selectAllSongsArray;
 
+export const selectSongListLoaded = createSelector(
+  selectSongsBranch,
+  (b) => b.loaded,
+);
+
 export const selectCurrentCount = createSelector(
   selectCounterBranch,
   (b) => b.current,

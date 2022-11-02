@@ -9,14 +9,18 @@ export interface SongEntity {
   album?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface SongListState extends EntityState<SongEntity> {}
+export interface SongListState extends EntityState<SongEntity> {
+  loaded: boolean;
+}
 
 export const adapter = createEntityAdapter<SongEntity>();
 
-const initialState = adapter.getInitialState();
+const initialState = adapter.getInitialState({
+  loaded: false,
+});
 
 export const reducer = createReducer(
   initialState,
   on(SongsDocuments.songs, (s, a) => adapter.setAll(a.payload, s)),
+  on(SongsDocuments.songs, (s) => ({ ...s, loaded: true })),
 );

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectSongsList } from '../../state';
+import { selectSongListLoaded, selectSongsList } from '../../state';
 
 @Component({
   selector: 'adt-list',
@@ -9,5 +9,6 @@ import { selectSongsList } from '../../state';
 })
 export class ListComponent {
   songs$ = this.store.select(selectSongsList);
+  loaded$ = this.store.select(selectSongListLoaded);
   constructor(private store: Store) {}
 }
