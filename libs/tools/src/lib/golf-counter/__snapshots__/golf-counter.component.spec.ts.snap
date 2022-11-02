@@ -8,7 +8,7 @@ exports[`GolfCounterComponent Initial State 1`] = `
     class="btn btn-primary"
     data-testid="decrement-button"
   >
-     Decrease
+     Decrease 
   </button>
   <span
     data-testid="current"
@@ -19,7 +19,7 @@ exports[`GolfCounterComponent Initial State 1`] = `
     class="btn btn-primary"
     data-testid="increment-button"
   >
-     + 
+     Increase 
   </button>
 </div>
 `;
